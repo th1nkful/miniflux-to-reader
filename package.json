@@ -1,0 +1,29 @@
+{
+  "name": "miniflux-to-reader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gcloud functions deploy miniflux-to-reader --env-vars-file .env.yaml --runtime nodejs12 --trigger-http --allow unauthenticated"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th1nkful/miniflux-to-reader.git"
+  },
+  "author": "th1nkful",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/th1nkful/miniflux-to-reader/issues"
+  },
+  "homepage": "https://github.com/th1nkful/miniflux-to-reader#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.0",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}
