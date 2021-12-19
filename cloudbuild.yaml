@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - functions
+  - deploy
+  - miniflux-to-reader
+  - --source=.
+  - --trigger-http
+  - --runtime=nodejs12
+  - --allow-unauthenticated
