@@ -21,6 +21,8 @@ LICENSE
 README.md
 
 run.js
+secrets.yaml
+test-run.js
 
 node_modules
 tests

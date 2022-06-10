@@ -1,0 +1,38 @@
+name: Deploy Cloud Function
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup GCP Service Account
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          export_default_credentials: true
+
+      - name: Create secrets.yaml
+        env:
+          READER_TOKEN: ${{ secrets.READER_TOKEN }}
+          MINIFLUX_TOKEN: ${{ secrets.MINIFLUX_TOKEN }}
+          MINIFLUX_BASE_URL: ${{ secrets.MINIFLUX_BASE_URL }}
+        run: |
+          touch secrets.yaml
+          echo READER_TOKEN: ${READER_TOKEN} >> secrets.yaml
+          echo MINIFLUX_TOKEN: ${MINIFLUX_TOKEN} >> secrets.yaml
+          echo MINIFLUX_BASE_URL: ${MINIFLUX_BASE_URL} >> secrets.yaml
+        shell: bash
+
+      - name: deploy cloud function
+        id: deploy
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: miniflux-to-reader
+          runtime: nodejs16
+          env_vars_file: secrets.yaml

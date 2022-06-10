@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "gcloud functions deploy miniflux-to-reader --env-vars-file .env.yaml --runtime nodejs12 --trigger-http --allow unauthenticated"
+    "deploy": "gcloud functions deploy miniflux-to-reader --env-vars-file .env.yaml --runtime nodejs16 --trigger-http --allow unauthenticated"
   },
   "repository": {
     "type": "git",
